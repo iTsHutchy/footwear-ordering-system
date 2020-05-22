@@ -7,6 +7,19 @@ const path = require('express');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+const dotenv = require('dotenv');
+dotenv.config();
+const url = process.env.MONGOLAB_URI;
+
+mongoose.connect(url || 'mongodb://localhost/shoe_orders', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
+mongoose.connection.on('connected', () => {
+    console.log('Datebase connected');
+});
+
 //HTTP request logger
 app.use(morgan('tiny'));
 
