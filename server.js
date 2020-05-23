@@ -7,37 +7,25 @@ const path = require('express');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+const routes = require('./routes/api');
+
+//Dotenv to fetch DB url
 const dotenv = require('dotenv');
 dotenv.config();
 const url = process.env.MONGOLAB_URI;
 
-mongoose.connect(url || 'mongodb://localhost/shoe_orders', {
+//Mongoose connection
+mongoose.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 
+//Connection logger
 mongoose.connection.on('connected', () => {
-    console.log('Datebase connected');
+    console.log('Database connected');
 });
 
 //HTTP request logger
 app.use(morgan('tiny'));
-
-//API test routes
-app.get('/api', (req, res) => {
-    const data = {
-        id: 1,
-        shoes: 'nike'
-    };
-    res.json(data);
-});
-
-app.get('/api/shoes', (req, res) => {
-    const data = {
-        id: 1,
-        shoes: 'adidas'
-    };
-    res.json(data);
-});
-
+app.use('/', routes);
 app.listen(PORT, console.log(`App listening at http://localhost:${PORT}`));
