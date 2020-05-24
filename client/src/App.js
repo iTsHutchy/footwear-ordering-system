@@ -1,11 +1,20 @@
 import React from 'react';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Route,
+} from 'react-router-dom';
+
+//Components
+import AddOrder from './components/addorder';
 
 function App() {
   return (
-    <div>
-      hello world
-    </div>
+    <Router>
+      <div>
+        <h1>Footwear Ordering System</h1>
+        <Route exact path="/addorder" component={AddOrder} />
+      </div>
+    </Router>
   );
 }
 
