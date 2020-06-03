@@ -27,11 +27,11 @@ class AddOrder extends React.Component {
 
     const payload = {
       productName: this.state.productName,
-      category: this.state.productName,
-      size: this.state.productName,
-      colour: this.state.productName,
-      status: this.state.productName,
-      customerInitials: this.state.productName
+      category: this.state.category,
+      size: this.state.size,
+      colour: this.state.colour,
+      status: this.state.status,
+      customerInitials: this.state.customerInitials
     }
     axios({
       url: '/save',
