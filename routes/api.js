@@ -15,4 +15,10 @@ router.get('/', (req, res) => {
         })
 });
 
+router.post('/save', (req, res) => {
+    res.json({
+        msg: 'Saved'
+    });
+})
+
 module.exports = router;

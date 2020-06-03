@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class AddOrder extends React.Component {
 
@@ -11,8 +12,38 @@ class AddOrder extends React.Component {
     customerInitials: ''
   };
 
-  handleChange = () => {
+  handleChange = (event) => {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
 
+    this.setState({
+      [name]: value
+    });
+  };
+
+  submit = (event) => {
+    event.preventDefault();
+
+    const payload = {
+      productName: this.state.productName,
+      category: this.state.productName,
+      size: this.state.productName,
+      colour: this.state.productName,
+      status: this.state.productName,
+      customerInitials: this.state.productName
+    }
+    axios({
+      url: 'http://localhost:3001/save',
+      method: 'POST',
+      data: payload
+    })
+    .then(() => {
+      console.log('Data sent');
+    })
+    .catch(() => {
+      console.log('Error sending data');
+    });
   };
 
   render() {
@@ -20,7 +51,7 @@ class AddOrder extends React.Component {
     return (
       <div>
         <h2>Add a new order</h2>
-        <form>
+        <form onSubmit={this.submit}>
           <div className="form-input">
             <input 
               type="text"
@@ -70,7 +101,7 @@ class AddOrder extends React.Component {
             <input 
               type="text"
               name="customerInitials"
-              value=""
+              value={this.state.customerInitials}
               placeholder="Customer Initials"
               onChange={this.handleChange}
             />
