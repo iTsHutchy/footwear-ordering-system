@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 //Schema
 const Schema = mongoose.Schema;
 const OrdersSchema = new Schema({
-    Product_name: String,
-    Category: String,
-    Size: String,
-    Colour: String,
-    Status: String,
-    Customers_Initials: String
+    productName: String,
+    category: String,
+    size: String,
+    colour: String,
+    status: String,
+    customerInitials: String
 });
 
 //Model
