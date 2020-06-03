@@ -25,6 +25,7 @@ mongoose.connection.on('connected', () => {
     console.log('Database connected');
 });
 
+//Parse data
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 

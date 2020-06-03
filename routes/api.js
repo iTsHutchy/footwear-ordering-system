@@ -16,9 +16,20 @@ router.get('/', (req, res) => {
 });
 
 router.post('/save', (req, res) => {
-    res.json({
-        msg: 'Saved'
+    console.log(req.body)
+    const newOrder = new Orders(req.body);
+
+    newOrder.save((error) => {
+        if (error) {
+            res.status(500).json({
+                msg: 'Error'
+            });
+            return;
+        }
+        return res.json({
+            msg: 'Saved'
+        });
     });
-})
+});
 
 module.exports = router;
