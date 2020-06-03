@@ -34,7 +34,7 @@ class AddOrder extends React.Component {
       customerInitials: this.state.productName
     }
     axios({
-      url: 'http://localhost:3001/save',
+      url: '/save',
       method: 'POST',
       data: payload
     })
